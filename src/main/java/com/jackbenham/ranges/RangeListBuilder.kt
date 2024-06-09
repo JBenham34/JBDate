@@ -5,7 +5,9 @@ import com.jackbenham.units.interfaces.DateUnit
 import java.util.*
 
 class RangeListBuilder<T : DateUnit<T>>(private val start_: T, private val end_: T) : Builder<List<T>> {
-    override fun build(): List<T> {
+    override val build: List<T> by lazy { build() }
+
+    fun build(): List<T> {
         val range: MutableList<T> = ArrayList(end_.getKey() - start_.getKey())
         var current = start_
         while (current != end_) {
