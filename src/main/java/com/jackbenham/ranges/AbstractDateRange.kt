@@ -8,7 +8,7 @@ abstract class AbstractDateRange<T : DateUnit<T>>(protected val start_: T, prote
     init { require(start_ <= end_) }
 
     private val range_: List<T> by lazy {
-        RangeListBuilder(start_, end_).build()
+        RangeListBuilder(start_, end_).buildResult_
     }
 
     override fun getStart(): T = start_

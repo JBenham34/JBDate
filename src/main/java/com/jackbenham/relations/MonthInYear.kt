@@ -38,23 +38,24 @@ enum class MonthInYear(private val index_: Int, private val representation_: Str
         }
     }
 
-    override fun getMM(): Int = index_ + 1
+    override val key_: Int
+        get() = index_
+
+    override fun getMM(): Int = key_ + 1
 
     override fun getMMM(): String = getMMMM().slice(IntRange(0, 2))
 
     override fun getMMMM(): String = representation_
 
-    override fun getQ(): Int = index_ / 3 + 1
+    override fun getQ(): Int = key_ / 3 + 1
 
     override fun getQQ(): String = "Q" + getQ()
 
-    override fun getKey(): Int = index_
+    override fun add(offset: Int): MonthInYear = fromKey(ProperMath.mod(key_ + offset, 12))!!
 
-    override fun add(offset: Int): MonthInYear = fromKey(ProperMath.mod(getKey() + offset, 12))!!
+    override fun getMonthInQuarter(): MonthInQuarter = MonthInQuarter.fromKey(key_ % 3)!!
 
-    override fun getMonthInQuarter(): MonthInQuarter = MonthInQuarter.fromKey(getKey() % 3)!!
-
-    override fun getQuarterInYear(): QuarterInYear = QuarterInYear.fromKey(getKey() / 3)!!
+    override fun getQuarterInYear(): QuarterInYear = QuarterInYear.fromKey(key_ / 3)!!
 
     override fun getMonthInYear(): MonthInYear = this
 }

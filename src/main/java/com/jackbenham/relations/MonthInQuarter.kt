@@ -18,9 +18,10 @@ enum class MonthInQuarter(private val index_: Int) : Keyed<Int>, Sequential<Mont
         }
     }
 
-    override fun getKey(): Int = index_
+    override val key_: Int
+        get() = index_
 
-    override fun add(offset: Int): MonthInQuarter = fromKey(ProperMath.mod(index_ + offset, 3))!!
+    override fun add(offset: Int): MonthInQuarter = fromKey(ProperMath.mod(key_ + offset, 3))!!
 
     fun getMonthInYear(quarterInYear: QuarterInYear): MonthInYear = quarterInYear.getMonthInYear(this)
 

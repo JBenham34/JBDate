@@ -8,7 +8,7 @@ class RangeListBuilder<T : DateUnit<T>>(private val start_: T, private val end_:
     override val buildResult_: List<T> by lazy { build() }
 
     private fun build(): List<T> {
-        val range: MutableList<T> = ArrayList(end_.getKey() - start_.getKey())
+        val range: MutableList<T> = ArrayList(end_.key_ - start_.key_)
         var current = start_
         while (current != end_) {
             range.add(current)

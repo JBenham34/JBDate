@@ -39,17 +39,18 @@ class Year private constructor(private val index_: Int) : DateUnit<Year>, YearFi
     val Q3: Quarter by lazy { quarter(QuarterInYear.Q3) }
     val Q4: Quarter by lazy { quarter(QuarterInYear.Q4) }
 
-    override fun getKey(): Int = index_
+    override val key_: Int
+        get() = index_
 
-    override fun add(offset: Int): Year = fromKey(getKey() + offset)
+    override fun add(offset: Int): Year = fromKey(key_ + offset)
 
     override fun toYear(): Year = this
 
-    override fun getYY(): Int = ProperMath.mod(getKey(), 100)
+    override fun getYY(): Int = ProperMath.mod(key_, 100)
 
-    override fun getYYYY(): Int = getKey()
+    override fun getYYYY(): Int = key_
 
-    override fun compareTo(other: Year): Int = getKey() - other.getKey()
+    override fun compareTo(other: Year): Int = key_ - other.key_
 
     override fun toString(): String = getYYYY().toString()
 
@@ -59,5 +60,5 @@ class Year private constructor(private val index_: Int) : DateUnit<Year>, YearFi
         return false
     }
 
-    override fun hashCode(): Int = getKey()
+    override fun hashCode(): Int = key_
 }

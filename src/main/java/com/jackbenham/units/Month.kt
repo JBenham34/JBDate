@@ -23,25 +23,26 @@ class Month private constructor(private val year_: Year, private val monthInYear
 
         override fun fromKey(key: Int): Month {
             val monthInYear = MonthInYear.fromKey(ProperMath.mod(key, 12))!!
-            require((key - monthInYear.getKey()) % 12 == 0)
-            val year = Year((key - monthInYear.getKey()) / 12)
+            require((key - monthInYear.key_) % 12 == 0)
+            val year = Year((key - monthInYear.key_) / 12)
             return invoke(year, monthInYear)
         }
     }
 
     private val iMonth_: Int by lazy {
-        year_.getKey() * 12 + monthInYear_.getKey()
+        year_.key_ * 12 + monthInYear_.key_
     }
 
-    override fun getKey(): Int = iMonth_
+    override val key_: Int
+        get() = iMonth_
 
-    override fun add(offset: Int): Month = fromKey(getKey() + offset)
+    override fun add(offset: Int): Month = fromKey(key_ + offset)
 
-    override fun compareTo(other: Month): Int = getKey() - other.getKey()
+    override fun compareTo(other: Month): Int = key_ - other.key_
 
     override fun toMonth(): Month = this
 
-    override fun toQuarter(): Quarter = Quarter.fromKey(getKey() / 3)
+    override fun toQuarter(): Quarter = Quarter.fromKey(key_ / 3)
 
     override fun toYear(): Year = year_
 
@@ -73,5 +74,5 @@ class Month private constructor(private val year_: Year, private val monthInYear
         return false
     }
 
-    override fun hashCode(): Int = getKey()
+    override fun hashCode(): Int = key_
 }

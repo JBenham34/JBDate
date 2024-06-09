@@ -18,17 +18,18 @@ class Quarter private constructor(private val year_: Year, private val quarterIn
 
         override fun fromKey(key: Int): Quarter {
             val quarterInYear = QuarterInYear.fromKey(ProperMath.mod(key, 4))!!
-            require((key - quarterInYear.getKey()) % 4 == 0)
-            val year = Year((key - quarterInYear.getKey()) / 4)
+            require((key - quarterInYear.key_) % 4 == 0)
+            val year = Year((key - quarterInYear.key_) / 4)
             return invoke(year, quarterInYear)
         }
     }
 
     private val iQuarter_: Int by lazy {
-        year_.getKey() * 4 + quarterInYear_.getKey()
+        year_.key_ * 4 + quarterInYear_.key_
     }
 
-    override fun getKey(): Int = iQuarter_
+    override val key_: Int
+        get() = iQuarter_
 
     override fun getQuarterInYear(): QuarterInYear  = quarterInYear_
 
@@ -44,9 +45,9 @@ class Quarter private constructor(private val year_: Year, private val quarterIn
 
     override fun getYYYY(): Int = year_.getYYYY()
 
-    override fun add(offset: Int): Quarter = fromKey(getKey() + offset)
+    override fun add(offset: Int): Quarter = fromKey(key_ + offset)
 
-    override fun compareTo(other: Quarter): Int = getKey() - other.getKey()
+    override fun compareTo(other: Quarter): Int = key_ - other.key_
 
     override fun toString(): String = "${getQQ()} ${getYYYY()}"
 
@@ -56,5 +57,5 @@ class Quarter private constructor(private val year_: Year, private val quarterIn
         return false
     }
 
-    override fun hashCode(): Int = getKey()
+    override fun hashCode(): Int = key_
 }
