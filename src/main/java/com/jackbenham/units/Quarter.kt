@@ -30,15 +30,15 @@ class Quarter private constructor(private val year_: Year, private val quarterIn
 
     override fun getKey(): Int = iQuarter_
 
+    override fun getQuarterInYear(): QuarterInYear  = quarterInYear_
+
     override fun toQuarter(): Quarter = this
 
-    override fun getQuarterInYear(): QuarterInYear  = quarterInYear_
+    override fun toYear(): Year = year_
 
     override fun getQ(): Int = quarterInYear_.getQ()
 
     override fun getQQ(): String = quarterInYear_.getQQ()
-
-    override fun toYear(): Year = year_
 
     override fun getYY(): Int = year_.getYY()
 
@@ -48,9 +48,7 @@ class Quarter private constructor(private val year_: Year, private val quarterIn
 
     override fun compareTo(other: Quarter): Int = getKey() - other.getKey()
 
-    override fun toString(): String {
-        return "${getQQ()} ${getYYYY()}"
-    }
+    override fun toString(): String = "${getQQ()} ${getYYYY()}"
 
     override fun equals(other: Any?): Boolean {
         if (other is Quarter)
