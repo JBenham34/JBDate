@@ -26,8 +26,8 @@ class QuarterRange private constructor(start: Quarter, end: Quarter) : AbstractD
         val startYear: Year = if (start_.getQuarterInYear() <= startingFromFirst) start_.toYear()
         else start_.toYear().next()
 
-        val endYear: Year = if (end_.getQuarterInYear() >= endingAtLast) start_.toYear()
-        else start_.toYear().prev()
+        val endYear: Year = if (end_.getQuarterInYear() >= endingAtLast) end_.toYear()
+        else end_.toYear().prev()
 
         return YearRange(startYear, endYear)
     }
