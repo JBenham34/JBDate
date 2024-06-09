@@ -44,10 +44,6 @@ class Quarter private constructor(private val year_: Year, private val quarterIn
 
     override fun getYYYY(): Int = year_.getYYYY()
 
-    override fun next(): Quarter = add(1)
-
-    override fun prev(): Quarter = add(-1)
-
     override fun add(offset: Int): Quarter = fromKey(getKey() + offset)
 
     override fun compareTo(other: Quarter): Int = getKey() - other.getKey()

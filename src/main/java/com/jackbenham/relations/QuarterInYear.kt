@@ -1,7 +1,6 @@
 package com.jackbenham.relations
 
 import com.jackbenham.*
-import com.jackbenham.units.Quarter
 import com.jackbenham.units.interfaces.QuarterFloating
 
 enum class QuarterInYear(private val index_ : Int) : Keyed<Int>, Sequential<QuarterInYear>, QuarterFloating, Comparable<QuarterInYear> {
@@ -23,10 +22,6 @@ enum class QuarterInYear(private val index_ : Int) : Keyed<Int>, Sequential<Quar
     }
 
     override fun getKey(): Int = index_
-
-    override fun next(): QuarterInYear = add(1)
-
-    override fun prev(): QuarterInYear = add(-1)
 
     override fun add(offset: Int): QuarterInYear = fromKey(ProperMath.mod(getKey() + offset, 4))!!
 

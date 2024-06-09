@@ -50,10 +50,6 @@ enum class MonthInYear(private val index_: Int, private val representation_: Str
 
     override fun getKey(): Int = index_
 
-    override fun next(): MonthInYear = add(1)
-
-    override fun prev(): MonthInYear = add(-1)
-
     override fun add(offset: Int): MonthInYear = fromKey(ProperMath.mod(getKey() + offset, 12))!!
 
     override fun getMonthInQuarter(): MonthInQuarter = MonthInQuarter.fromKey(getKey() % 3)!!

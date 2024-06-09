@@ -38,10 +38,6 @@ class Year private constructor(private val index_: Int) : DateUnit<Year>, YearFi
     val q3: Quarter by lazy { quarter(QuarterInYear.Q3) }
     val q4: Quarter by lazy { quarter(QuarterInYear.Q4) }
 
-    override fun next(): Year = fromKey(getKey() + 1)
-
-    override fun prev(): Year = fromKey(getKey() - 1)
-
     override fun getKey(): Int = index_
 
     override fun add(offset: Int): Year = fromKey(getKey() + offset)

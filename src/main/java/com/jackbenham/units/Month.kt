@@ -35,10 +35,6 @@ class Month private constructor(private val year_: Year, private val monthInYear
 
     override fun getKey(): Int = iMonth_
 
-    override fun next(): Month = add(1)
-
-    override fun prev(): Month = add(-1)
-
     override fun add(offset: Int): Month = fromKey(getKey() + offset)
 
     override fun compareTo(other: Month): Int = getKey() - other.getKey()
