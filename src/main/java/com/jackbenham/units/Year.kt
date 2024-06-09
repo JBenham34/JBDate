@@ -6,7 +6,6 @@ import com.jackbenham.relations.MonthInYear
 import com.jackbenham.relations.QuarterInYear
 import com.jackbenham.units.interfaces.DateUnit
 import com.jackbenham.units.interfaces.YearFixed
-import com.jackbenham.units.interfaces.YearFloating
 
 class Year private constructor(private val index_: Int) : DateUnit<Year>, YearFixed {
     companion object : KeyedCreator<Int, Year> {
@@ -58,4 +57,12 @@ class Year private constructor(private val index_: Int) : DateUnit<Year>, YearFi
     override fun toString(): String {
         return getYYYY().toString()
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (other is Year)
+            return this === other
+        return false
+    }
+
+    override fun hashCode(): Int = getKey()
 }

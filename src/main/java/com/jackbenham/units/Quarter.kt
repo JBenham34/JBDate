@@ -55,4 +55,12 @@ class Quarter private constructor(private val year_: Year, private val quarterIn
     override fun toString(): String {
         return "${getQQ()} ${getYYYY()}"
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (other is Quarter)
+            return this === other
+        return false
+    }
+
+    override fun hashCode(): Int = getKey()
 }

@@ -19,7 +19,7 @@ class Month private constructor(private val year_: Year, private val monthInYear
         }
 
         operator fun invoke(quarter: Quarter, monthInQuarter: MonthInQuarter): Month
-            = Month(quarter.toYear(), monthInQuarter.getMonthInYear(quarter.getQuarterInYear()))
+            = invoke(quarter.toYear(), monthInQuarter.getMonthInYear(quarter.getQuarterInYear()))
 
         override fun fromKey(key: Int): Month {
             val monthInYear = MonthInYear.fromKey(ProperMath.mod(key, 12))!!
@@ -72,4 +72,12 @@ class Month private constructor(private val year_: Year, private val monthInYear
     override fun toString(): String {
         return "${getMMM()} ${getYYYY()}"
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (other is Month)
+            return this === other
+        return false
+    }
+
+    override fun hashCode(): Int = getKey()
 }
