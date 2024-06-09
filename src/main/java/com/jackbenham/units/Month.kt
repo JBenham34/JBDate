@@ -53,13 +53,13 @@ class Month private constructor(private val year_: Year, private val monthInYear
 
     override fun getMonthInQuarter(): MonthInQuarter = monthInYear_.getMonthInQuarter()
 
+    override fun getQuarterInYear(): QuarterInYear = toQuarter().getQuarterInYear()
+
     override fun getMM(): Int = monthInYear_.getMM()
 
     override fun getMMM(): String = monthInYear_.getMMM()
 
     override fun getMMMM(): String = monthInYear_.getMMMM()
-
-    override fun getQuarterInYear(): QuarterInYear = toQuarter().getQuarterInYear()
 
     override fun getQ(): Int = toQuarter().getQ()
 
