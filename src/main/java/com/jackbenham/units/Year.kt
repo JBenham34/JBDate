@@ -51,9 +51,7 @@ class Year private constructor(private val index_: Int) : DateUnit<Year>, YearFi
 
     override fun compareTo(other: Year): Int = getKey() - other.getKey()
 
-    override fun toString(): String {
-        return getYYYY().toString()
-    }
+    override fun toString(): String = getYYYY().toString()
 
     override fun equals(other: Any?): Boolean {
         if (other is Year)

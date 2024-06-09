@@ -33,9 +33,7 @@ abstract class AbstractDateRange<T : DateUnit<T>>(protected val start_: T, prote
         return end_ == other.end_
     }
 
-    override fun toString(): String {
-        return "${getStart()} - ${getEnd()}"
-    }
+    override fun toString(): String = "${getStart()} - ${getEnd()}"
 
 
 }

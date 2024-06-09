@@ -65,9 +65,7 @@ class Month private constructor(private val year_: Year, private val monthInYear
 
     override fun getYYYY(): Int = toYear().getYYYY()
 
-    override fun toString(): String {
-        return "${getMMM()} ${getYYYY()}"
-    }
+    override fun toString(): String = "${getMMM()} ${getYYYY()}"
 
     override fun equals(other: Any?): Boolean {
         if (other is Month)
