@@ -4,7 +4,7 @@ import com.jackbenham.units.interfaces.DateUnit
 import java.util.*
 import java.util.stream.Stream
 
-abstract class AbstractDateRange<T : DateUnit<T>>(private val start_: T, private val end_: T) : DateRange<T> {
+abstract class AbstractDateRange<T : DateUnit<T>>(protected val start_: T, protected val end_: T) : DateRange<T> {
     init { require(start_ <= end_) }
 
     private val range_: List<T> by lazy {

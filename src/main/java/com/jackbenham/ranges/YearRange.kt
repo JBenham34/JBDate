@@ -6,7 +6,7 @@ import com.jackbenham.units.Month
 import com.jackbenham.units.Quarter
 import com.jackbenham.units.Year
 
-class YearRange private constructor(private val start_: Year, private val end_: Year) : AbstractDateRange<Year>(start_, end_) {
+class YearRange private constructor(start: Year, end: Year) : AbstractDateRange<Year>(start, end) {
     companion object {
         operator fun invoke(start: Year, end: Year): YearRange? {
             if (start <= end)

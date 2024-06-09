@@ -6,7 +6,7 @@ import com.jackbenham.units.Month
 import com.jackbenham.units.Quarter
 import com.jackbenham.units.Year
 
-class MonthRange private constructor(private val start_: Month, private val end_: Month) : AbstractDateRange<Month>(start_, end_) {
+class MonthRange private constructor(start: Month, end: Month) : AbstractDateRange<Month>(start, end) {
     companion object {
         operator fun invoke(start: Month, end: Month): MonthRange? {
             if (start <= end)
