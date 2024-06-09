@@ -89,4 +89,11 @@ class AbstractDateRangeTest {
         for (month in range) assertTrue(range.contains(month))
         for (month in differentRange) assertTrue(differentRange.contains(month))
     }
+
+    @Test
+    fun testToString() {
+        assertEquals("Jan 2020 - Dec 2020", MonthRange(Year(2020).jan, Year(2020).dec).toString())
+        assertEquals("Q1 2020 - Q4 2020", QuarterRange(Year(2020).q1, Year(2020).q4).toString())
+        assertEquals("2020 - 2020", YearRange(Year(2020), Year(2020)).toString())
+    }
 }

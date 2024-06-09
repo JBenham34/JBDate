@@ -27,6 +27,7 @@ abstract class AbstractDateRange<T : DateUnit<T>>(protected val start_: T, prote
 
     override fun equals(other: Any?): Boolean {
         if (other == null) return false
+        if (other.hashCode() != hashCode()) return false
         if (other !is AbstractDateRange<*>) return false
         if (start_ != other.start_) return false
         return end_ == other.end_

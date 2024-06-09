@@ -2,9 +2,7 @@ package com.jackbenham.ranges
 
 import com.jackbenham.relations.MonthInQuarter
 import com.jackbenham.relations.MonthInYear
-import com.jackbenham.relations.QuarterInYear
 import com.jackbenham.units.Year
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
@@ -20,10 +18,11 @@ class MonthRangeTest {
 
     @Test
     fun testConversionToYearlyCanProduceNulls() {
-        val secondHalfOf2020 = MonthRange(Year(2020).jul, Year(2020).dec)!!
-        assertNull(secondHalfOf2020.toYearRange(MonthInYear.JAN, MonthInYear.DEC))
-        assertNull(secondHalfOf2020.toYearRange(MonthInYear.JUN, MonthInYear.DEC))
-        assertNotNull(secondHalfOf2020.toYearRange(MonthInYear.JUL, MonthInYear.DEC))
+        val secondHalfOf2020 = MonthRange(Year(2020).jul, Year(2020).nov)!!
+        assertNull(secondHalfOf2020.toYearRange(MonthInYear.JAN, MonthInYear.NOV))
+        assertNull(secondHalfOf2020.toYearRange(MonthInYear.JUN, MonthInYear.NOV))
+        assertNotNull(secondHalfOf2020.toYearRange(MonthInYear.JUL, MonthInYear.NOV))
+        assertNull(secondHalfOf2020.toYearRange(MonthInYear.JUL, MonthInYear.DEC))
     }
 
     @Test
