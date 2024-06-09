@@ -1,26 +1,56 @@
 package com.jackbenham.relations
 
-import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 internal class MonthInYearTest {
     @Test
-    fun next() {
+    fun testFromKey() {
+        assertNull(MonthInYear.fromKey(-1))
+        assertSame(MonthInYear.JAN, MonthInYear.fromKey(0))
+        assertSame(MonthInYear.FEB, MonthInYear.fromKey(1))
+        assertSame(MonthInYear.MAR, MonthInYear.fromKey(2))
+        assertSame(MonthInYear.APR, MonthInYear.fromKey(3))
+        assertSame(MonthInYear.MAY, MonthInYear.fromKey(4))
+        assertSame(MonthInYear.JUN, MonthInYear.fromKey(5))
+        assertSame(MonthInYear.JUL, MonthInYear.fromKey(6))
+        assertSame(MonthInYear.AUG, MonthInYear.fromKey(7))
+        assertSame(MonthInYear.SEP, MonthInYear.fromKey(8))
+        assertSame(MonthInYear.OCT, MonthInYear.fromKey(9))
+        assertSame(MonthInYear.NOV, MonthInYear.fromKey(10))
+        assertSame(MonthInYear.DEC, MonthInYear.fromKey(11))
+        assertNull(MonthInYear.fromKey(12))
+    }
+
+    @Test
+    fun testGetMs() {
+        assertEquals(3, MonthInYear.MAR.getMM())
+        assertEquals("Mar", MonthInYear.MAR.getMMM())
+        assertEquals("March", MonthInYear.MAR.getMMMM())
+    }
+
+    @Test
+    fun testGetQs() {
+        assertEquals(1, MonthInYear.MAR.getQ())
+        assertEquals("Q1", MonthInYear.MAR.getQQ())
+    }
+
+    @Test
+    fun testNext() {
         assertSame(MonthInYear.FEB, MonthInYear.JAN.next())
         assertSame(MonthInYear.MAR, MonthInYear.FEB.next())
         assertSame(MonthInYear.JAN, MonthInYear.DEC.next())
     }
 
     @Test
-    fun prev() {
+    fun testPrev() {
         assertSame(MonthInYear.JAN, MonthInYear.FEB.prev())
         assertSame(MonthInYear.FEB, MonthInYear.MAR.prev())
         assertSame(MonthInYear.DEC, MonthInYear.JAN.prev())
     }
 
     @Test
-    fun add() {
+    fun testAdd() {
         assertSame(MonthInYear.FEB, MonthInYear.JAN.add(1))
         assertSame(MonthInYear.FEB, MonthInYear.FEB.add(12))
         assertSame(MonthInYear.FEB, MonthInYear.FEB.add(24))
@@ -32,7 +62,7 @@ internal class MonthInYearTest {
     }
 
     @Test
-    fun getMonthInQuarter() {
+    fun testGetMonthInQuarter() {
         assertEquals(MonthInQuarter.FIRST, MonthInYear.JAN.getMonthInQuarter())
         assertEquals(MonthInQuarter.MIDDLE, MonthInYear.FEB.getMonthInQuarter())
         assertEquals(MonthInQuarter.LAST, MonthInYear.MAR.getMonthInQuarter())
@@ -48,7 +78,7 @@ internal class MonthInYearTest {
     }
 
     @Test
-    fun getQuarterInYear() {
+    fun testGetQuarterInYear() {
         assertEquals(QuarterInYear.Q1, MonthInYear.JAN.getQuarterInYear())
         assertEquals(QuarterInYear.Q1, MonthInYear.FEB.getQuarterInYear())
         assertEquals(QuarterInYear.Q1, MonthInYear.MAR.getQuarterInYear())
@@ -61,5 +91,13 @@ internal class MonthInYearTest {
         assertEquals(QuarterInYear.Q4, MonthInYear.OCT.getQuarterInYear())
         assertEquals(QuarterInYear.Q4, MonthInYear.NOV.getQuarterInYear())
         assertEquals(QuarterInYear.Q4, MonthInYear.DEC.getQuarterInYear())
+    }
+
+
+
+    @Test
+    fun testGetMonthInYear() {
+        for (month in MonthInYear.entries)
+            assertSame(month, month.getMonthInYear())
     }
 }
