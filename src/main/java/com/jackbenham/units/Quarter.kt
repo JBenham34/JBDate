@@ -1,6 +1,7 @@
 package com.jackbenham.units
 
 import com.jackbenham.*
+import com.jackbenham.relations.MonthInQuarter
 import com.jackbenham.relations.QuarterInYear
 import com.jackbenham.units.interfaces.*
 import java.util.*
@@ -23,6 +24,12 @@ class Quarter private constructor(private val year_: Year, private val quarterIn
             return invoke(year, quarterInYear)
         }
     }
+
+    private fun month(monthInQuarter: MonthInQuarter): Month = Month(this, monthInQuarter)
+
+    val FIRST: Month by lazy { month(MonthInQuarter.FIRST) }
+    val MIDDLE: Month by lazy { month(MonthInQuarter.MIDDLE) }
+    val LAST: Month by lazy { month(MonthInQuarter.LAST) }
 
     private val iQuarter_: Int by lazy {
         year_.key_ * 4 + quarterInYear_.key_

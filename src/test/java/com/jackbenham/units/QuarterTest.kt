@@ -1,5 +1,6 @@
 package com.jackbenham.units
 
+import com.jackbenham.relations.MonthInYear
 import com.jackbenham.relations.QuarterInYear
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
@@ -86,6 +87,13 @@ class QuarterTest {
     fun testConversions() {
         assertSame(Year(2020).Q1, Year(2020).Q1.toQuarter())
         assertSame(Year(2020), Year(2020).Q1.toYear())
+    }
+
+    @Test
+    fun testMonthPseudoEnums() {
+        assertEquals(Year(2020).JAN, Year(2020).Q1.FIRST)
+        assertEquals(Year(2020).FEB, Year(2020).Q1.MIDDLE)
+        assertEquals(Year(2020).MAR, Year(2020).Q1.LAST)
     }
 
     @Test
