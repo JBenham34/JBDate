@@ -1,6 +1,5 @@
 package com.jackbenham.units
 
-import com.jackbenham.relations.MonthInYear
 import com.jackbenham.relations.QuarterInYear
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
