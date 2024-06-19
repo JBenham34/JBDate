@@ -11,9 +11,20 @@ abstract class AbstractDateRange<T : DateUnit<T>>(protected val start_: T, prote
         RangeListBuilder(start_, end_).buildResult_
     }
 
+    private val length_ : Int by lazy {
+        end_.key_ - start_.key_
+    }
+
     override fun getStart(): T = start_
 
     override fun getEnd(): T = end_
+
+    override fun inRange(other: T): Int? {
+        val offset = other.compareTo(start_)
+        if (offset < 0 || offset > length_)
+            return null
+        return offset
+    }
 
     override fun list(): List<T> = range_
 
@@ -24,6 +35,8 @@ abstract class AbstractDateRange<T : DateUnit<T>>(protected val start_: T, prote
     override fun contains(element: T): Boolean = list().contains(element)
 
     override fun hashCode(): Int = Objects.hash(start_, end_)
+
+    override fun length(): Int = length_
 
     override fun equals(other: Any?): Boolean {
         if (other == null) return false
